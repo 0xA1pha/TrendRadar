@@ -32,7 +32,7 @@ SMTP_CONFIGS = {
     # Outlook（使用 STARTTLS）
     "outlook.com": {
         "server": "smtp-mail.outlook.com",
-        "port": 587,
+        "port": 587，
         "encryption": "TLS",
     },
     "hotmail.com": {
@@ -58,9 +58,9 @@ SMTP_CONFIGS = {
 # === 配置管理 ===
 def load_config():
     """加载配置文件"""
-    config_path = os.environ.get("CONFIG_PATH", "config/config.yaml")
+    config_path = os.environ.get("CONFIG_PATH"， "config/config.yaml")
 
-    if not Path(config_path).exists():
+    if not Path(config_path)。exists():
         raise FileNotFoundError(f"配置文件 {config_path} 不存在")
 
     with open(config_path, "r", encoding="utf-8") as f:
@@ -70,14 +70,14 @@ def load_config():
 
     # 构建配置
     config = {
-        "VERSION_CHECK_URL": config_data["app"]["version_check_url"],
+        "VERSION_CHECK_URL": config_data["app"]["version_check_url"]，
         "SHOW_VERSION_UPDATE": config_data["app"]["show_version_update"],
-        "REQUEST_INTERVAL": config_data["crawler"]["request_interval"],
-        "REPORT_MODE": os.environ.get("REPORT_MODE", "").strip()
-        or config_data["report"]["mode"],
+        "REQUEST_INTERVAL": config_data["crawler"]["request_interval"]，
+        "REPORT_MODE": os.environ。get("REPORT_MODE"， "").strip()
+        或 config_data["report"]["mode"],
         "RANK_THRESHOLD": config_data["report"]["rank_threshold"],
         "SORT_BY_POSITION_FIRST": os.environ.get("SORT_BY_POSITION_FIRST", "").strip().lower()
-        in ("true", "1")
+        在 ("true", "1")
         if os.environ.get("SORT_BY_POSITION_FIRST", "").strip()
         else config_data["report"].get("sort_by_position_first", False),
         "MAX_NEWS_PER_KEYWORD": int(
